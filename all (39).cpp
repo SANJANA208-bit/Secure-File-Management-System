@@ -1,0 +1,17 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <ctime>
+#include <sys/stat.h>
+
+using namespace std;
+
+#define KEY 'K'
+#define MAX 200
+
+class User {
+public:
+    string username;
+    string password_hash;
+    string role;
+};

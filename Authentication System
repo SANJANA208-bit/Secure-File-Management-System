@@ -1,0 +1,28 @@
+string hashPassword(string input) {
+    string output = input;
+    for (int i = 0; i < input.length(); i++)
+        output[i] = input[i] + 2;
+    return output;
+}
+
+void add_user() {
+    ofstream fp("users.txt", ios::app);
+
+    string username, password, role;
+
+    cout << "Enter username: ";
+    cin >> username;
+
+    cout << "Enter password: ";
+    cin >> password;
+
+    cout << "Enter role (admin/user/guest): ";
+    cin >> role;
+
+    string hash_pass = hashPassword(password);
+
+    fp << username << " " << hash_pass << " " << role << endl;
+    fp.close();
+
+    cout << "User added successfully!\n";
+}

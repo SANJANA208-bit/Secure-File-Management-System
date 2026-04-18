@@ -1,0 +1,43 @@
+int generateOTP() {
+    return rand() % 9000 + 1000;
+}
+
+bool login(User &loggedUser) {
+    ifstream fp("users.txt");
+
+    string username, password;
+    string file_user, file_pass, file_role;
+
+    cout << "Enter username: ";
+    cin >> username;
+
+    cout << "Enter password: ";
+    cin >> password;
+
+    string hash_pass = hashPassword(password);
+
+    while (fp >> file_user >> file_pass >> file_role) {
+
+        if (username == file_user && hash_pass == file_pass) {
+
+            loggedUser.username = file_user;
+            loggedUser.password_hash = file_pass;
+            loggedUser.role = file_role;
+
+            int otp = generateOTP();
+            cout << "OTP: " << otp << endl;
+
+            int user_otp;
+            cout << "Enter OTP: ";
+            cin >> user_otp;
+
+            if (user_otp != otp) {
+                cout << "Invalid OTP!\n";
+                return false;
+            }
+
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,17 @@
+if (!checkAccess(user.role, "delete")) {
+    cout << "Access Denied!\n";
+    return;
+}
+
+if (name.empty()) {
+    cout << "Invalid filename!\n";
+    return;
+}
+bool fileExists(string name) {
+    ifstream f(name);
+    return f.good();
+}
+if (!fileExists(name)) {
+    cout << "File does not exist!\n";
+    return;
+}

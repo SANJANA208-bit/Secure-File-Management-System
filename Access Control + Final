@@ -1,0 +1,17 @@
+bool checkAccess(string role, string action) {
+
+    if (role == "admin")
+        return true;
+
+    if (role == "user") {
+        if (action == "create" || action == "read" || action == "write")
+            return true;
+    }
+
+    if (role == "guest") {
+        if (action == "read")
+            return true;
+    }
+
+    return false;
+}

@@ -1,0 +1,17 @@
+void log_action(string action, string file) {
+    ofstream log("log.txt", ios::app);
+    if (log) {
+        time_t now = time(0);
+        log << ctime(&now) << " - " << action << ": " << file << endl;
+        log.close();
+    }
+}
+
+bool isMalicious(string filename) {
+    if (filename.find(".exe") != string::npos ||
+        filename.find(".bat") != string::npos ||
+        filename.find(".sh") != string::npos)
+        return true;
+
+    return false;
+}
